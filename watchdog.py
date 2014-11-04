@@ -6,6 +6,7 @@ from sqlalchemy import create_engine, MetaData
 
 
 # Fill these out for your database. PS: THIS USES MYSQL CONNECTORS. EDIT FOR OTHER CONNECTIONS IF NEEDED
+# Filled out with example case
 username = "appkom"
 password = "appKom123"
 dbLocation = "localhost/test"
@@ -21,7 +22,7 @@ name = ""
 #TODO: get the name associated with cardnumber from API
 def returnName(numb):
 	#Temp name until API is in place
-	name = "Some Temp"
+	name = "Temp Name"
 	return name
 
 
@@ -47,7 +48,7 @@ while (number != 'exit'):
 	tempdate = datetime.datetime.now()
 	date = str(tempdate.weekday()) + ':' + str(tempdate.hour) + ':' + str(tempdate.minute)
 
-	# Formats name for later use in watchreporter
+	# Formats name for later use in watchreporter PS: Uses first and last name. Will add exception handling later
 	tempName = username.split(' ')
 	username = (tempName[0] + " " + tempName[(len(tempName) - 1)])
 
