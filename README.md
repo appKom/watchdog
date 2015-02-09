@@ -14,6 +14,7 @@ This script is runs in the terminal and takes in a cardnumber from a card-reader
 This script reads from an ical file on the web, and compares it to the SQL-database that watchdog writes to. It gets the watch-hours from the ical and checks if people checked in during their watch-hours from the SQL-database.
 
 ## Notes and limitations:
+- NOT CURRENTLY WORKING
 - Currently very limited use as the scripts are written for a specific problem. It will be expanded later
 - Written for MySQL atm, but will be customizable shortly
 - Dependables will be added later as an "installation script" instead of manual install at client and server
