@@ -25,5 +25,3 @@ This script reads from an ical file on the web, and compares it to the SQL-datab
 - Daily report is up and running
 - Config file added for easy configuration
 - MySQL version complete
-- 
-
