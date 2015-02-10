@@ -1,42 +1,37 @@
 from icalendar import Calendar
-from datetime import datetime, timedelta, date
+from datetime import datetime, timedelta
 from sqlalchemy import create_engine
 from sqlalchemy.sql import select
 from tzlocal import get_localzone
 from models import checkin
+from config import icsLocation, DBusername, DBpassword, DBlocation, tomail, frommail, frommailpass
 import urllib.request
 import smtplib
 import pytz
 
 # Gets ical file and parses it to a calendar
 # Example ical is used
-req = urllib.request.Request('https://www.google.com/calendar/ical/b72fgdhuv6g5mpoqa0bdvj095k%40group.calendar.google.com/public/basic.ics')
+req = urllib.request.Request(icsLocation)
 response = urllib.request.urlopen(req)
 data = response.read()
 gcal = Calendar.from_ical(data)
 
 # Creates empty list for future use and utc variable for timezone converting
-people = {}
+people = []
 utc = pytz.UTC
 
-# Here you can store some variables for customization purposes
-# Sqlstring is filled with example case and uses mysql connectors
-sqlString = 'mysql+mysqlconnector://appkom:appKom123@localhost/test'
-frommail = 'frommail@mail.com'
-tomail = 'tomail@mail.com'
-subject = ('Daily Office Report ' + str(date.today()))
+# Sets up engine for database connection
+engine = create_engine('mysql+mysqlconnector://' + DBusername + ':' + DBpassword + '@' + DBlocation, echo=False)
 
 # The date that starts generating the calendar
 defineDate = datetime(2014, 9, 22, 00, 00).replace(tzinfo=get_localzone())
 
 # Sets up the engine to get information from SQL server
-engine = create_engine(sqlString, echo=False)
 conn = engine.connect()
-
 
 # Generates a text-field for the e-mail report
 def generateText():
-    textField = "These people did not check in during their watch-hours: "
+    textField = "\nThese people did not check in during their watch-hours:"
 
     for person in people:
         textField += ("\n" + person)
@@ -44,39 +39,33 @@ def generateText():
     return textField
 
 # Sends the email with the content apropriate to the reciever
-# TODO: Set up email syntax when comparing logic is finished
-def sendEmail(content):
-    try:
-        smtpObj = smtplib.SMTP('localhost')
-        smtpObj.sendmail(frommail, tomail, content)         
-        print ("Successfully sent email")
-    except SMTPException:
-        print ("Error: unable to send email")
+def sendEmail():
+    smtpserver = smtplib.SMTP("smtp.gmail.com",587)
+    smtpserver.ehlo()
+    smtpserver.starttls()
+    smtpserver.ehlo
+    smtpserver.login(frommail, frommailpass)
+    header = 'To:' + tomail + '\n' + 'From: ' + frommail + '\n' + 'Subject:Watchdog Daily Report ' + str(todate.day) + '.' + str(todate.month) + '\n'
+    msg = header + generateText()
+    smtpserver.sendmail(frommail, tomail, msg)
+    print ('Email sent')
+    smtpserver.close()
 
 # Loops through the ical and looks for relevant events
 for event in gcal.walk('vevent'):
-    isFound = False
+    isFound = True
 
     start = event.decoded('dtstart')
-
-    # Debug print
-    print(event.get('summary'))
 
     todate = datetime.now().replace(tzinfo=get_localzone())
 
     today = todate.weekday()
 
-    yesterday = today - 1
-
-    # Debug print
-    print(start.weekday())
-
     # Compares the dates of the ical events towards the current date
-    if ((start > defineDate) and (start.weekday() >= yesterday) and (start.weekday() <= today)):
+    if ((start > defineDate) and (start < (defineDate + timedelta(days=7))) and (start.weekday() == today)):
+        isFound = False
         name = event.get('summary')
-        end = event.get('dtend')
-
-        print('hello')
+        end = event.decoded('dtend')
 
         # Gets the data from the database
         s = select([checkin])
@@ -89,24 +78,24 @@ for event in gcal.walk('vevent'):
             tempWeekDay = int(tempTime[0])
             tempHours = int(tempTime[1])
             tempMinutes = int(tempTime[2])
+            tempDay = int(tempTime[3])
+            tempMonth = int(tempTime[4])
 
-            tempNameList = name.split(' ')
-            name = (tempNameList[0] + " " + tempNameList[(len(tempNameList) - 1)])
+            tempNameList = tempName.split(' ')
+            tempName = (tempNameList[0] + " " + tempNameList[(len(tempNameList) - 1)])
 
-            # Todo: Update logic to handle date and weekday comparison as the ical is generated based on a week
 
-            # Compares the date from server with current date
-            if ((newTime > start) and (newTime < end) and (name == tempName)):
-                isFound = True
+            # Compares checkin date to today and reports if person is found
+            if (start.weekday() == tempWeekDay):
+                if (((tempHours >= start.hour) and (tempHours < end.hour)) and (tempDay == todate.day) and (tempMonth == todate.month)):
+                    isFound = True
+                    break
 
+        # If person isn't found; adds name to list
         if (not(isFound)):
             people.append(name)
 
-emailText = generateText()
 
-# Debug Print
-print(emailText)
-
-# TODO: Generate email using function above and send to desired email
+sendEmail()
 
 response.close()
