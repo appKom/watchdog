@@ -2,7 +2,7 @@ Watchdog
 ========
 Latest version: 1.0
 
-![Logo](http://fc01.deviantart.net/fs70/f/2013/136/4/5/watch_dogs_logo_vector_by_darsephtan-d65fwzk.jpg)
+![Logo](http://fc01.deviantart.net/fs70/f/2013/136/4/5/watch_dogs_logo_vector_by_darsephtan-d65fwzk.jpg =250x)
 
 ## What is watchdog?
 
