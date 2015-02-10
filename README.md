@@ -1,7 +1,7 @@
 Watchdog
 ========
 Latest version: 1.0
-<img src="http://fc01.deviantart.net/fs70/f/2013/136/4/5/watch_dogs_logo_vector_by_darsephtan-d65fwzk.jpg" alt="Logo" style="width:300px;height:300px">
+<img src="http://fc01.deviantart.net/fs70/f/2013/136/4/5/watch_dogs_logo_vector_by_darsephtan-d65fwzk.jpg" alt="Logo" style="width:200px;height:200px">
 
 ![Logo]()
 
