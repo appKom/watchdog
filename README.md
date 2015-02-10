@@ -1,4 +1,4 @@
-Watchdog (
+Watchdog
 ========
 Latest version: 1.0
 
@@ -20,7 +20,7 @@ This script reads from an ical file on the web, and compares it to the SQL-datab
 - Dependables will be added later as an "installation script" instead of manual install at client and server
 
 ##Version Log
-#1.0:
+###1.0:
 - Working for Online Linjeforening
 - Daily report is up and running
 - Config file added for easy configuration
