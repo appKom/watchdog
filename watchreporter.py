@@ -40,6 +40,7 @@ def generateText():
 
 # Sends the email with the content apropriate to the reciever
 def sendEmail():
+    print ('Sending Email \n')
     smtpserver = smtplib.SMTP("smtp.gmail.com",587)
     smtpserver.ehlo()
     smtpserver.starttls()
@@ -47,9 +48,11 @@ def sendEmail():
     smtpserver.login(frommail, frommailpass)
     header = 'To:' + tomail + '\n' + 'From: ' + frommail + '\n' + 'Subject:Watchdog Daily Report ' + str(todate.day) + '.' + str(todate.month) + '\n'
     msg = header + generateText()
-    smtpserver.sendmail(frommail, tomail, msg)
+    smtpserver.sendmail(frommail, tomail, msg.encode('utf-8'))
     print ('Email sent')
     smtpserver.close()
+
+print ("Starting up program and going through database \n")
 
 # Loops through the ical and looks for relevant events
 for event in gcal.walk('vevent'):
@@ -95,6 +98,7 @@ for event in gcal.walk('vevent'):
         if (not(isFound)):
             people.append(name)
 
+print ("Done searching the database \n")
 
 sendEmail()
 
