@@ -2,6 +2,8 @@ Watchdog
 ========
 Latest version: 1.1
 
+![Logo](logo.png)
+
 ## What is watchdog?
 
 Watchdog is a script-package that offers tools that keeps track of when people check in at the office. One part is client-side and handles the checkins and the other is server-side that handles reporting who showed up for their watch-hours.
