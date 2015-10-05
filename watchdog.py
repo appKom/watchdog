@@ -2,11 +2,10 @@ import os
 import datetime
 import time
 from models import checkin, metadata
-from config import DBusername, DBpassword, DBlocation
 from sqlalchemy import create_engine, MetaData
 
 # Generates the variables used later
-engine = create_engine('mysql+mysqlconnector://' + DBusername + ':' + DBpassword + '@' + DBlocation, echo=False)
+engine = create_engine('sqlite:///checkins.db')
 
 #TODO: get the name associated with cardnumber from API
 def returnName(numb):
