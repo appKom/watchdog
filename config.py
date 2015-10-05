@@ -2,9 +2,9 @@
 # Endrer du disse her, så endres de alle steder.
 # ICS plassering
 
-icsLocation = 'ics.url'
+icsLocation = 'https://www.google.com/calendar/ical/b72fgdhuv6g5mpoqa0bdvj095k%40group.calendar.google.com/public/basic.ics'
 
 # Mail variables
-frommail = 'appkom.watchdog@gmail.com'
+frommail = 'online.appkom.watchdog@gmail.com'
 frommailpass = 'appKom123'
 tomail = 'petterrostrup@gmail.com'
