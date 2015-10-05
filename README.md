@@ -27,7 +27,7 @@ Set up a MySQL database and create a user and password. Add the location, user a
 The program will create a table for checkins if it doesn't exist, so don't worry about that
 
 ### Step 3:
-Run pip install on requirements.txt. That will install all dependencies for the scripts
+Run pip install -r requirements.txt. That will install all dependencies for the scripts
 
 ### Step 4:
 Prepare a gmail user that will send out the daily reports. Fill in the mail-user, password and what mail will recieve the reports in config.py
