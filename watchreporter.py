@@ -24,7 +24,7 @@ utc = pytz.UTC
 engine = create_engine('sqlite:///checkins.db')
 
 # The date that starts generating the calendar
-defineDate = datetime(2014, 9, 22, 00, 00).replace(tzinfo=get_localzone())
+defineDate = datetime(2015, 9, 7, 00, 00).replace(tzinfo=get_localzone())
 
 # Sets up the engine to get information from SQL server
 conn = engine.connect()
@@ -68,8 +68,9 @@ for event in gcal.walk('vevent'):
     if ((start > defineDate) and (start < (defineDate + timedelta(days=7))) and (start.weekday() == today)):
         isFound = False
         name = event.get('summary')
+        print(name)
         end = event.decoded('dtend')
-
+        print(end)
         # Gets the data from the database
         s = select([checkin])
         result = conn.execute(s)

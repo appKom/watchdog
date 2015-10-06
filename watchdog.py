@@ -56,8 +56,7 @@ while (number != 'exit'):
 
 		# Waits and then clears the console
 		time.sleep(10)
-		clear = lambda: os.system('cls')
-		clear()
+		os.system('cls' if os.name == 'nt' else 'clear')
 
 	else:
 		print('Did not recognize card-number. Scan again')
