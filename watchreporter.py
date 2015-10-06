@@ -5,6 +5,8 @@ from sqlalchemy.sql import select
 from tzlocal import get_localzone
 from models import checkin
 from config import icsLocation, tomail, frommail, frommailpass
+import time
+import os
 import urllib.request
 import smtplib
 import pytz
@@ -102,5 +104,7 @@ for event in gcal.walk('vevent'):
 print ("Done searching the database \n")
 
 sendEmail()
+time.sleep(10)
+os.system('cls' if os.name == 'nt' else 'clear')
 
 response.close()
