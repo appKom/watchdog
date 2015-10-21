@@ -39,6 +39,11 @@ def generateText():
     for person in people:
         textField += ("\n" + person)
 
+    textField += "\nThese people checked in:"
+
+    for person in cleared:
+        textField += ("\n" + person)
+
     return textField
 
 # Sends the email with the content apropriate to the reciever
