@@ -20,6 +20,7 @@ gcal = Calendar.from_ical(data)
 
 # Creates empty list for future use and utc variable for timezone converting
 people = []
+cleared = []
 utc = pytz.UTC
 
 # Sets up engine for database connection
@@ -95,6 +96,7 @@ for event in gcal.walk('vevent'):
             if (start.weekday() == tempWeekDay):
                 if (((tempHours >= start.hour) and (tempHours < end.hour)) and (tempDay == todate.day) and (tempMonth == todate.month)):
                     isFound = True
+                    cleared.append(name + " (" + tempHours + "." + tempMinutes + ")")
                     break
 
         # If person isn't found; adds name to list

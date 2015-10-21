@@ -52,7 +52,7 @@ while (number != 'exit'):
 			print("Something went wrong writing to the database. Your check-in was not registered")
 			continue
 
-		print("You are checked in, " + username + ". Console will reset in 10 seconds")
+		print("You are checked in. Console will reset in 10 seconds")
 
 		# Waits and then clears the console
 		time.sleep(10)
