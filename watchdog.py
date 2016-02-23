@@ -35,7 +35,7 @@ while (number != 'exit'):
 
 	if ((dateNow < firstWatch ) or (dateNow > lastWatch)):
 		print ("\nNot within watchhours. Checkin not registered")
-		time.sleep(2)
+		time.sleep(4)
 		os.system('cls' if os.name == 'nt' else 'clear')
 		continue
 
@@ -69,3 +69,5 @@ while (number != 'exit'):
 
 	else:
 		print('Did not recognize card-number. Scan again')
+		time.sleep(4)
+		os.system('cls' if os.name == 'nt' else 'clear')
