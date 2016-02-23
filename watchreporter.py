@@ -24,7 +24,7 @@ cleared = []
 utc = pytz.UTC
 
 # Sets up engine for database connection
-engine = create_engine('sqlite://' + dblocation + '/checkins.db')
+engine = create_engine('sqlite:///' + dblocation + 'checkins.db')
 
 # The date that starts generating the calendar
 defineDate = datetime(2015, 9, 7, 00, 00).replace(tzinfo=get_localzone())
