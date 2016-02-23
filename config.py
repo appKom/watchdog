@@ -8,3 +8,5 @@ icsLocation = 'https://calendar.google.com/calendar/ical/b72fgdhuv6g5mpoqa0bdvj0
 frommail = 'online.appkom.watchdog@gmail.com'
 frommailpass = 'appKom123'
 tomail = 'petterrostrup@gmail.com'
+
+dblocation = '/home/pi/watchdog/'

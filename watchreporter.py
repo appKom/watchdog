@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.sql import select
 from tzlocal import get_localzone
 from models import checkin
-from config import icsLocation, tomail, frommail, frommailpass
+from config import icsLocation, tomail, frommail, frommailpass, dblocation
 import time
 import os
 import urllib.request
@@ -24,7 +24,7 @@ cleared = []
 utc = pytz.UTC
 
 # Sets up engine for database connection
-engine = create_engine('sqlite:///checkins.db')
+engine = create_engine('sqlite://' + dblocation + '/checkins.db')
 
 # The date that starts generating the calendar
 defineDate = datetime(2015, 9, 7, 00, 00).replace(tzinfo=get_localzone())
