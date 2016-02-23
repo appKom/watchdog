@@ -35,6 +35,8 @@ while (number != 'exit'):
 
 	if ((dateNow < firstWatch ) or (dateNow > lastWatch)):
 		print ("\nNot within watchhours. Checkin not registered")
+		time.sleep(2)
+		os.system('cls' if os.name == 'nt' else 'clear')
 		continue
 
 	if (number.isdigit() and (len(number) > 6)):
