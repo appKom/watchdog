@@ -39,7 +39,7 @@ def generateText():
     for person in people:
         textField += ("\n" + person)
 
-    textField += "\nThese people checked in:"
+    textField += "\n\nThese people checked in too late:"
 
     for person in cleared:
         textField += ("\n" + person)
