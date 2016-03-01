@@ -23,15 +23,16 @@ except:
 
 
 number = ""
-dateNow = datetime.datetime.now()
-firstWatch = dateNow.replace(hour=8, minute=0, second=0, microsecond=0)
-lastWatch = dateNow.replace(hour=14, minute=0, second=0, microsecond=0)
 # Main program that loops
 while (number != 'exit'):
 	print ("Scan Card:")
 
 	# Gets input from card-reader
 	number = str(input())
+
+	dateNow = datetime.datetime.now()
+	firstWatch = dateNow.replace(hour=8, minute=0, second=0, microsecond=0)
+	lastWatch = dateNow.replace(hour=14, minute=0, second=0, microsecond=0)
 
 	if ((dateNow < firstWatch ) or (dateNow > lastWatch)):
 		print ("\nNot within watchhours. Checkin not registered")

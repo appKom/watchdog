@@ -27,7 +27,7 @@ utc = pytz.UTC
 engine = create_engine('sqlite:///' + dblocation + 'checkins.db')
 
 # The date that starts generating the calendar
-defineDate = datetime(2015, 9, 7, 00, 00).replace(tzinfo=get_localzone())
+defineDate = datetime(2015, 1, 25, 00, 00).replace(tzinfo=get_localzone())
 
 # Sets up the engine to get information from SQL server
 conn = engine.connect()
@@ -100,8 +100,12 @@ for event in gcal.walk('vevent'):
             # Compares checkin date to today and reports if person is found
             if (start.weekday() == tempWeekDay):
                 if (((tempHours >= start.hour) and (tempHours < end.hour)) and (tempDay == todate.day) and (tempMonth == todate.month)):
+                    if ((tempMinutes > 10) or tempMinutes < 50 ):
+                        cleared.append(name + " " + (tempMinutes - 10) + " minutes late")
                     isFound = True
-                    cleared.append(name + " (" + tempHours + "." + tempMinutes + ")")
+                    break
+                else if ((((tempHours >= (start.hour - 1)) and (tempHours < (end.hour - 1))) and (tempDay == todate.day) and (tempMonth == todate.month) and (tempMinutes >= 50))):
+                    isFound = True
                     break
 
         # If person isn't found; adds name to list
