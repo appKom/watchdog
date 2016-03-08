@@ -77,7 +77,8 @@ for event in gcal.walk('vevent'):
     end = event.decoded('dtend')
     print(end)
 
-    if (start.before())
+    if (start < defineDate):
+        break
 
     # Compares the dates of the ical events towards the current date
     if ((start > defineDate) and (start < (defineDate + timedelta(days=7))) and (start.weekday() == today)):
