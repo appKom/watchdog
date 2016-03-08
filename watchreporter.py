@@ -96,6 +96,8 @@ for event in gcal.walk('vevent'):
             tempNameList = tempName.split(' ')
             tempName = (tempNameList[0] + " " + tempNameList[(len(tempNameList) - 1)])
 
+            print("Stuff")
+
 
             # Compares checkin date to today and reports if person is found
             if (start.weekday() == tempWeekDay):
@@ -117,7 +119,7 @@ for event in gcal.walk('vevent'):
 
 print ("Done searching the database \n")
 
-sendEmail()
+#sendEmail()
 time.sleep(10)
 os.system('cls' if os.name == 'nt' else 'clear')
 
