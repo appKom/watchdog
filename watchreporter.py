@@ -54,7 +54,7 @@ def generateText():
         for x in range(0,6):
             textField += ("\n\n" + dayNames[x] + ":")
             counter = 0
-            while (true):
+            while (True):
                 try:
                     textField += ("\n" + people[x][counter])
                 except Exception as e:
@@ -62,7 +62,7 @@ def generateText():
 
             textField += "\n\nThese people checked in too late:"
 
-            while (true):
+            while (True):
                 try:
                     textField += ("\n" + cleared[x][counter])
                 except Exception as e:
