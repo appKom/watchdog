@@ -72,21 +72,16 @@ for event in gcal.walk('vevent'):
 
     today = todate.weekday()
 
-    name = event.get('summary')
-    print(name)
-    end = event.decoded('dtend')
-    print(end)
-
     if (start < defineDate):
         break
 
     # Compares the dates of the ical events towards the current date
     if ((start > defineDate) and (start < (defineDate + timedelta(days=7))) and (start.weekday() == today)):
         isFound = False
-        name = event.get('summary')
-        print(name)
-        end = event.decoded('dtend')
-        print(end)
+        # name = event.get('summary')
+        # print(name)
+        # end = event.decoded('dtend')
+        # print(end)
         # Gets the data from the database
         s = select([checkin])
         result = conn.execute(s)
@@ -125,10 +120,8 @@ for event in gcal.walk('vevent'):
 
 print ("Done searching the database \n")
 
-print ("Folk" + ", " .join(people) + "\n")
-print ("Sent" +  ", " .join(cleared) + "\n")
-#sendEmail()
+sendEmail()
 time.sleep(10)
-#os.system('cls' if os.name == 'nt' else 'clear')
+os.system('cls' if os.name == 'nt' else 'clear')
 
 response.close()
