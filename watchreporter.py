@@ -219,7 +219,7 @@ for event in gcal.walk('vevent'):
 
 print ("Done searching the database \n")
 
-if (0 <= today.weekday <= 4):
+if (0 <= today <= 4):
     sendEmail()
 time.sleep(10)
 os.system('cls' if os.name == 'nt' else 'clear')
