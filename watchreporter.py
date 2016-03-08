@@ -103,8 +103,8 @@ def sendEmail():
 print ("Starting up program and going through database \n")
 
 if (reportMode == "weekly"):
-    people = eval('[[0]*8]*2')
-    cleared = eval('[[0]*8]*2')
+    people = eval('[[0]*8]*5')
+    cleared = eval('[[0]*8]*5')
 
 # Loops through the ical and looks for relevant events
 for event in gcal.walk('vevent'):
