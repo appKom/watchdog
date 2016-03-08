@@ -34,11 +34,11 @@ while (number != 'exit'):
 	firstWatch = dateNow.replace(hour=8, minute=0, second=0, microsecond=0)
 	lastWatch = dateNow.replace(hour=16, minute=0, second=0, microsecond=0)
 
-	if ((dateNow < firstWatch ) or (dateNow > lastWatch)):
-		print ("\nNot within watchhours. Checkin not registered")
-		time.sleep(4)
-		os.system('cls' if os.name == 'nt' else 'clear')
-		continue
+	#if ((dateNow < firstWatch ) or (dateNow > lastWatch)):
+		#print ("\nNot within watchhours. Checkin not registered")
+		#time.sleep(4)
+		#os.system('cls' if os.name == 'nt' else 'clear')
+		#continue
 
 	if (number.isdigit() and (len(number) > 6)):
 		# Uses function to get name from API
