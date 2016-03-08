@@ -124,8 +124,8 @@ print ("Done searching the database \n")
 
 print ("Folk" + ", " .join(people) + "\n")
 print ("Sent" +  ", " .join(cleared) + "\n")
-sendEmail()
+#sendEmail()
 time.sleep(10)
-os.system('cls' if os.name == 'nt' else 'clear')
+#os.system('cls' if os.name == 'nt' else 'clear')
 
 response.close()
