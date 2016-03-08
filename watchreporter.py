@@ -96,7 +96,7 @@ for event in gcal.walk('vevent'):
             tempNameList = tempName.split(' ')
             tempName = (tempNameList[0] + " " + tempNameList[(len(tempNameList) - 1)])
 
-            print("Stuff")
+            print("\nStuff")
 
 
             # Compares checkin date to today and reports if person is found
@@ -106,11 +106,11 @@ for event in gcal.walk('vevent'):
                         cleared.append(name + " " + (tempMinutes - 10) + " minutes late")
                     isFound = True
 
-                    print("within time" + tempTime)
+                    print("\nwithin time" + tempTime)
                     break
                 elif ((((tempHours >= (start.hour - 1)) and (tempHours < (end.hour - 1))) and (tempDay == todate.day) and (tempMonth == todate.month) and (tempMinutes >= 50))):
                     isFound = True
-                    print("after time" + tempTime)
+                    print("\nafter time" + tempTime)
                     break
 
         # If person isn't found; adds name to list
