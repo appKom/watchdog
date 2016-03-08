@@ -93,7 +93,7 @@ def sendEmail():
         smtpserver.starttls()
         smtpserver.ehlo
         smtpserver.login(frommail, frommailpass)
-        header = 'To:' + tomail + '\n' + 'From: ' + frommail + '\n' + 'Subject:Watchdog Weekly Report week ' + datetime.today().isocalendar()[1]  + '\n'
+        header = 'To:' + tomail + '\n' + 'From: ' + frommail + '\n' + 'Subject:Watchdog Weekly Report week ' + str(datetime.today().isocalendar()[1])  + '\n'
         msg = header + generateText()
         smtpserver.sendmail(frommail, tomail, msg.encode('utf-8'))
         print ('Email sent')
