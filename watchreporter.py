@@ -117,8 +117,8 @@ for event in gcal.walk('vevent'):
 
 print ("Done searching the database \n")
 
-print (", " .join(people) + "\n")
-print (", " .join(cleared) + "\n")
+print ("Folk" + ", " .join(people) + "\n")
+print ("Sent" +  ", " .join(cleared) + "\n")
 sendEmail()
 time.sleep(10)
 os.system('cls' if os.name == 'nt' else 'clear')
