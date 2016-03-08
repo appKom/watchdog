@@ -118,7 +118,8 @@ for event in gcal.walk('vevent'):
     if (start < defineDate):
         break
 
-    if (start > defineDate) and (start < (defineDate + timedelta(days=7)):
+    if ((start > defineDate) and (start < (defineDate + timedelta(days=7)))):
+        print("herro")
         if (reportMode == "daily"):
             # Compares the dates of the ical events towards the current date
             if (start.weekday() == today):
@@ -205,6 +206,10 @@ for event in gcal.walk('vevent'):
                     # If person isn't found; adds name to list
                     if (not(isFound)):
                         people[dayOfWeek].append(name)
+
+
+        else:
+            print("stuff")
 
 
 
