@@ -12,4 +12,4 @@ tomail = 'petterrostrup@gmail.com'
 dblocation = '/home/pi/watchdog/'
 
 # report mode. 'daily' for a daily report and 'weekly' for a weekly report
-reportMode = 'weekly'
+reportMode = 'daily'
