@@ -104,7 +104,7 @@ for event in gcal.walk('vevent'):
                         cleared.append(name + " " + (tempMinutes - 10) + " minutes late")
                     isFound = True
                     break
-                else if ((((tempHours >= (start.hour - 1)) and (tempHours < (end.hour - 1))) and (tempDay == todate.day) and (tempMonth == todate.month) and (tempMinutes >= 50))):
+                elif ((((tempHours >= (start.hour - 1)) and (tempHours < (end.hour - 1))) and (tempDay == todate.day) and (tempMonth == todate.month) and (tempMinutes >= 50))):
                     isFound = True
                     break
 
