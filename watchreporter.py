@@ -27,7 +27,7 @@ utc = pytz.UTC
 engine = create_engine('sqlite:///' + dblocation + 'checkins.db')
 
 # The date that starts generating the calendar
-defineDate = datetime(2015, 1, 20, 00, 00).replace(tzinfo=get_localzone())
+defineDate = datetime(2015, 1, 25, 00, 00).replace(tzinfo=get_localzone())
 
 # Sets up the engine to get information from SQL server
 conn = engine.connect()
@@ -71,6 +71,11 @@ for event in gcal.walk('vevent'):
     todate = datetime.now().replace(tzinfo=get_localzone())
 
     today = todate.weekday()
+
+    name = event.get('summary')
+    print(name)
+    end = event.decoded('dtend')
+    print(end)
 
     # Compares the dates of the ical events towards the current date
     if ((start > defineDate) and (start < (defineDate + timedelta(days=7))) and (start.weekday() == today)):
