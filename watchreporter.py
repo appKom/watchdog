@@ -69,15 +69,6 @@ def generateText():
                     break
 
 
-        for person in people:
-            textField += ("\n" + person)
-
-
-
-        for person in cleared:
-            textField += ("\n" + person)
-
-
     return textField
 
 # Sends the email with the content apropriate to the reciever
@@ -127,7 +118,7 @@ for event in gcal.walk('vevent'):
     if (start < defineDate):
         break
 
-    if ((start > defineDate) and (start < (defineDate + timedelta(days=7))):
+    if (start > defineDate) and (start < (defineDate + timedelta(days=7)):
             if (reportMode == "daily"):
                 # Compares the dates of the ical events towards the current date
                 if (start.weekday() == today):
