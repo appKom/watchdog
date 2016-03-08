@@ -103,9 +103,12 @@ for event in gcal.walk('vevent'):
                     if ((tempMinutes > 10) or tempMinutes < 50 ):
                         cleared.append(name + " " + (tempMinutes - 10) + " minutes late")
                     isFound = True
+
+                    print("within time" + tempTime)
                     break
                 elif ((((tempHours >= (start.hour - 1)) and (tempHours < (end.hour - 1))) and (tempDay == todate.day) and (tempMonth == todate.month) and (tempMinutes >= 50))):
                     isFound = True
+                    print("after time" + tempTime)
                     break
 
         # If person isn't found; adds name to list
