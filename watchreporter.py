@@ -119,9 +119,53 @@ for event in gcal.walk('vevent'):
         break
 
     if (start > defineDate) and (start < (defineDate + timedelta(days=7)):
-            if (reportMode == "daily"):
-                # Compares the dates of the ical events towards the current date
-                if (start.weekday() == today):
+        if (reportMode == "daily"):
+            # Compares the dates of the ical events towards the current date
+            if (start.weekday() == today):
+                isFound = False
+                name = event.get('summary')
+                # print(name)
+                end = event.decoded('dtend')
+                # print(end)
+
+                # Gets the data from the database
+                s = select([checkin])
+                result = conn.execute(s)
+
+                # Loops through the sql content
+                for row in result:
+                    tempTime = row['time'].split(':')
+                    tempName = row['name']
+                    tempWeekDay = int(tempTime[0])
+                    tempHours = int(tempTime[1])
+                    tempMinutes = int(tempTime[2])
+                    tempDay = int(tempTime[3])
+                    tempMonth = int(tempTime[4])
+
+                    tempNameList = tempName.split(' ')
+                    tempName = (tempNameList[0] + " " + tempNameList[(len(tempNameList) - 1)])
+
+
+                    # Compares checkin date to today and reports if person is found
+                    if (start.weekday() == tempWeekDay):
+                        if (((tempHours >= start.hour) and (tempHours < end.hour)) and (tempDay == todate.day) and (tempMonth == todate.month)):
+                            if ((tempMinutes > 10) or tempMinutes < 50 ):
+                                cleared.append(name + " " + (tempMinutes - 10) + " minutes late")
+                            isFound = True
+
+                            break
+                        elif ((((tempHours >= (start.hour - 1)) and (tempHours < (end.hour - 1))) and (tempDay == todate.day) and (tempMonth == todate.month) and (tempMinutes >= 50))):
+                            isFound = True
+                            break
+
+                # If person isn't found; adds name to list
+                if (not(isFound)):
+                    people.append(name)
+
+
+        elif(reportMode == "weekly"):
+            for dayOfWeek in range(0,4):
+                if (start.weekday() == dayOfWeek):
                     isFound = False
                     name = event.get('summary')
                     # print(name)
@@ -150,7 +194,7 @@ for event in gcal.walk('vevent'):
                         if (start.weekday() == tempWeekDay):
                             if (((tempHours >= start.hour) and (tempHours < end.hour)) and (tempDay == todate.day) and (tempMonth == todate.month)):
                                 if ((tempMinutes > 10) or tempMinutes < 50 ):
-                                    cleared.append(name + " " + (tempMinutes - 10) + " minutes late")
+                                    cleared.[dayOfWeek]append(name + " " + (tempMinutes - 10) + " minutes late")
                                 isFound = True
 
                                 break
@@ -160,51 +204,7 @@ for event in gcal.walk('vevent'):
 
                     # If person isn't found; adds name to list
                     if (not(isFound)):
-                        people.append(name)
-
-
-            elif(reportMode == "weekly"):
-                for dayOfWeek in range(0,4):
-                    if (start.weekday() == dayOfWeek):
-                        isFound = False
-                        name = event.get('summary')
-                        # print(name)
-                        end = event.decoded('dtend')
-                        # print(end)
-
-                        # Gets the data from the database
-                        s = select([checkin])
-                        result = conn.execute(s)
-
-                        # Loops through the sql content
-                        for row in result:
-                            tempTime = row['time'].split(':')
-                            tempName = row['name']
-                            tempWeekDay = int(tempTime[0])
-                            tempHours = int(tempTime[1])
-                            tempMinutes = int(tempTime[2])
-                            tempDay = int(tempTime[3])
-                            tempMonth = int(tempTime[4])
-
-                            tempNameList = tempName.split(' ')
-                            tempName = (tempNameList[0] + " " + tempNameList[(len(tempNameList) - 1)])
-
-
-                            # Compares checkin date to today and reports if person is found
-                            if (start.weekday() == tempWeekDay):
-                                if (((tempHours >= start.hour) and (tempHours < end.hour)) and (tempDay == todate.day) and (tempMonth == todate.month)):
-                                    if ((tempMinutes > 10) or tempMinutes < 50 ):
-                                        cleared.[dayOfWeek]append(name + " " + (tempMinutes - 10) + " minutes late")
-                                    isFound = True
-
-                                    break
-                                elif ((((tempHours >= (start.hour - 1)) and (tempHours < (end.hour - 1))) and (tempDay == todate.day) and (tempMonth == todate.month) and (tempMinutes >= 50))):
-                                    isFound = True
-                                    break
-
-                        # If person isn't found; adds name to list
-                        if (not(isFound)):
-                            people[dayOfWeek].append(name)
+                        people[dayOfWeek].append(name)
 
 
 
