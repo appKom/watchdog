@@ -78,10 +78,11 @@ for event in gcal.walk('vevent'):
     # Compares the dates of the ical events towards the current date
     if ((start > defineDate) and (start < (defineDate + timedelta(days=7))) and (start.weekday() == today)):
         isFound = False
-        # name = event.get('summary')
+         name = event.get('summary')
         # print(name)
-        # end = event.decoded('dtend')
+         end = event.decoded('dtend')
         # print(end)
+        
         # Gets the data from the database
         s = select([checkin])
         result = conn.execute(s)
@@ -98,8 +99,6 @@ for event in gcal.walk('vevent'):
 
             tempNameList = tempName.split(' ')
             tempName = (tempNameList[0] + " " + tempNameList[(len(tempNameList) - 1)])
-
-            print(tempName)
 
 
             # Compares checkin date to today and reports if person is found
