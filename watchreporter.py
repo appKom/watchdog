@@ -51,7 +51,7 @@ def generateText():
     elif (reportMode == "weekly"):
         textField = "\nThese people did not check in during their watch-hours:"
 
-        for x in range(0,6):
+        for x in range(0,4):
             textField += ("\n\n" + dayNames[x] + ":")
             counter = 0
             while (True):
