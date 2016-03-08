@@ -195,7 +195,7 @@ for event in gcal.walk('vevent'):
                         if (start.weekday() == tempWeekDay):
                             if (((tempHours >= start.hour) and (tempHours < end.hour)) and (tempDay == todate.day) and (tempMonth == todate.month)):
                                 if ((tempMinutes > 10) or tempMinutes < 50 ):
-                                    cleared.[dayOfWeek]append(name + " " + (tempMinutes - 10) + " minutes late")
+                                    cleared[dayOfWeek].append(name + " " + (tempMinutes - 10) + " minutes late")
                                 isFound = True
 
                                 break
