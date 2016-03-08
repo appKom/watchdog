@@ -104,6 +104,7 @@ print ("Starting up program and going through database \n")
 
 if (reportMode == "weekly"):
     people.append([])
+    cleared.append([])
 
 # Loops through the ical and looks for relevant events
 for event in gcal.walk('vevent'):
