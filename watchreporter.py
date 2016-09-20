@@ -29,7 +29,7 @@ dayNames = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag']
 engine = create_engine('sqlite:///' + dblocation + 'checkins.db')
 
 # The date that starts generating the calendar
-defineDate = datetime(2016, 9, 01, 00, 00).replace(tzinfo=get_localzone())
+defineDate = datetime(2016, 9, 5, 00, 00).replace(tzinfo=get_localzone())
 
 # Sets up the engine to get information from SQL server
 conn = engine.connect()
