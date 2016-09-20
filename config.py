@@ -5,9 +5,9 @@
 icsLocation = 'https://calendar.google.com/calendar/ical/b72fgdhuv6g5mpoqa0bdvj095k%40group.calendar.google.com/public/basic.ics'
 
 # Mail variables
-frommail = 
-frommailpass = 
-tomail = 
+frommail = "mail here"
+frommailpass = "to this mail"
+tomail = "password here. don't push"
 
 dblocation = '/home/pi/watchdog/'
 
